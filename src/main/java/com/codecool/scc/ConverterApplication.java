@@ -2,19 +2,30 @@ package com.codecool.scc;
 
 public class ConverterApplication {
 
-    public enum Option {JSON, XML}
+    public enum Option {
+        JSON, XML, TABLE;
+        String path = "";
+    }
 
     public static void main (String[] args) {
 
         try{
-            Option choice = Option.valueOf(args[0]);
-
+            Option choice;
+            if(args.length == 1) {
+                choice = Option.TABLE;
+            } else {
+                choice = Option.valueOf(args[0]);
+            }
+            choice.path = args[args.length -1];
             switch (choice) {
                 case JSON:
-                    System.out.println("json");
+                    System.out.println(choice.path);
                     break;
                 case XML:
-                    System.out.println("xml");
+                    System.out.println(choice.path);
+                    break;
+                case TABLE:
+                    System.out.println(choice.path);
                     break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
