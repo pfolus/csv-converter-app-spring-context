@@ -17,15 +17,17 @@ public class ConverterApplication {
                 choice = Option.valueOf(args[0]);
             }
             choice.path = args[args.length -1];
+            SimpleCsvConverter converter = new SimpleCsvConverter();
+
             switch (choice) {
                 case JSON:
-                    System.out.println(choice.path);
+                    converter.convert(choice.path, choice.toString());
                     break;
                 case XML:
-                    System.out.println(choice.path);
+                    converter.convert(choice.path, choice.toString());
                     break;
                 case TABLE:
-                    System.out.println(choice.path);
+                    converter.convert(choice.toString());
                     break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
