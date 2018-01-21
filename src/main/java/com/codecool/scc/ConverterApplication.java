@@ -1,39 +1,42 @@
 package com.codecool.scc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class ConverterApplication {
 
-    public enum Option {
-        JSON, XML, TABLE;
-        String path = "";
-    }
+    public enum Option {JSON, XML, TABLE}
 
     public static void main (String[] args) {
 
-        try{
+        try {
             Option choice;
-            if(args.length == 1) {
+            if (args.length == 1) {
                 choice = Option.TABLE;
             } else {
                 choice = Option.valueOf(args[0]);
             }
-            choice.path = args[args.length -1];
-            SimpleCsvConverter converter = new SimpleCsvConverter();
+            File file = new File(args[args.length - 1]);
+            FileReader reader = new FileReader();
+            SimpleCsvConverter converter = new SimpleCsvConverter(reader);
 
             switch (choice) {
                 case JSON:
-                    converter.convert(choice.path, choice.toString());
+                    converter.convert(file, choice);
                     break;
                 case XML:
-                    converter.convert(choice.path, choice.toString());
+                    converter.convert(file, choice);
                     break;
                 case TABLE:
-                    converter.convert(choice.toString());
+                    converter.convert(file);
                     break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("No input file defined");
         } catch (IllegalArgumentException e) {
             System.out.println("wrong parameter given");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
         }
     }
 }
