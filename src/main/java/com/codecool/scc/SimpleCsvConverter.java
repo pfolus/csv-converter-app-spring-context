@@ -10,10 +10,12 @@ import java.util.List;
 public class SimpleCsvConverter {
 
     FileReader reader;
-    OutputFormatterFactory factory = new OutputFormatterFactory();
+    OutputFormatterFactory factory;
 
-    public SimpleCsvConverter(FileReader reader){
+    public SimpleCsvConverter(FileReader reader, OutputFormatterFactory factory){
+
         this.reader = reader;
+        this.factory = factory;
     }
 
     public void convert(File file, ConverterApplication.Option outputFormat) throws FileNotFoundException {
@@ -22,7 +24,7 @@ public class SimpleCsvConverter {
         outputFormatter.printToConsole(data);
     }
 
-    public void convert(File file) throws FileNotFoundException {
+    public void convert(File file ) throws FileNotFoundException {
         List<String[]> data = reader.readData(file);
         OutputFormatter outputFormatter = new TableOutputFormatter();
         outputFormatter.printToConsole(data);
