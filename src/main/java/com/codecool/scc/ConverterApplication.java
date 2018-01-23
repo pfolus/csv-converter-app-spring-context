@@ -14,7 +14,7 @@ public class ConverterApplication {
         try {
 
             ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-            SimpleCsvConverter converter = (SimpleCsvConverter) ctx.getBean("converter");
+            SimpleCsvConverter converter = (SimpleCsvConverter) ctx.getBean("simpleCsvConverter");
 
             Option choice;
             if (args.length == 1) {
