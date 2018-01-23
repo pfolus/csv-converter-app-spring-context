@@ -4,7 +4,9 @@ import com.codecool.scc.view.JsonOutputFormatter;
 import com.codecool.scc.view.OutputFormatter;
 import com.codecool.scc.view.TableOutputFormatter;
 import com.codecool.scc.view.XmlOutputFormatter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OutputFormatterFactory {
 
     public OutputFormatter createByFormat(ConverterApplication.Option outputFormat) {
