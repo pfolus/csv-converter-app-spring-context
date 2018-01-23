@@ -2,11 +2,13 @@ package com.codecool.scc;
 
 import com.codecool.scc.view.OutputFormatter;
 import com.codecool.scc.view.TableOutputFormatter;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+@Component
 public class SimpleCsvConverter {
 
     FileReader reader;
