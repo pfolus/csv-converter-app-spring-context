@@ -1,5 +1,7 @@
 package com.codecool.scc;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -10,6 +12,10 @@ public class ConverterApplication {
     public static void main (String[] args) {
 
         try {
+
+            ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+            SimpleCsvConverter converter = (SimpleCsvConverter) ctx.getBean("converter");
+
             Option choice;
             if (args.length == 1) {
                 choice = Option.TABLE;
@@ -17,8 +23,6 @@ public class ConverterApplication {
                 choice = Option.valueOf(args[0]);
             }
             File file = new File(args[args.length - 1]);
-            FileReader reader = new FileReader();
-            SimpleCsvConverter converter = new SimpleCsvConverter(reader);
 
             switch (choice) {
                 case JSON:
